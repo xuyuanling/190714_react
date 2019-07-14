@@ -1,9 +1,16 @@
 import React,{Component} from 'react'
+import {Button, message} from 'antd'
+/*
+应用根组件
+ */
 
 export default class App extends Component{
+    handleClick = () => {
+        message.success('成功啦...')
+    }
     render(){
         return(
-            <div>aaa</div>
+            <Button type='primary' onClick={this.handleClick}>学习</Button>
         )
     }
 }
