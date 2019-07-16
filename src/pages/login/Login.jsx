@@ -1,7 +1,7 @@
 import React from 'react'
 import { Form, Icon, Input, Button, Checkbox } from 'antd'
 import {reqLogin} from '../../api/index'
-import logo from './images/logo.png'
+import logo from '../../assets/images/logo.png'
 import './login.less'
 
 class Login extends React.Component{
