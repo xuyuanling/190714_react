@@ -3,8 +3,9 @@ import {withRouter} from 'react-router-dom'
 import menuList from '../../config/menuConfig'
 import {formateDate} from '../../utils/dateUtils'
 import {reqWeather} from '../../api'
+import LinkBotton from '../link-botton'
 import './index.less'
-import { async } from 'q';
+
 
 
 class Header extends React.Component{
@@ -63,7 +64,8 @@ class Header extends React.Component{
             <div className='header'> 
                 <div className='header-top'>
                     <span>hello,admin</span>
-                    <a href="javascript:;">退出</a>
+                    <LinkBotton>退出</LinkBotton>
+
                 </div>
                 <div className='header-bottom'>
                     <div className='header-bottom-left'>{title}</div>
