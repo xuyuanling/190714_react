@@ -2,7 +2,7 @@ import React from 'react'
 import {Link,withRouter} from 'react-router-dom'
 import './index.less'
 import logo from '../../assets/images/logo.png'
-import { Menu, Icon, Button } from 'antd';
+import { Menu, Icon } from 'antd';
 import meauList from '../../config/menuConfig'
 
 const { SubMenu } = Menu;

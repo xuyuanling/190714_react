@@ -24,13 +24,62 @@ export default class ProductHome extends React.Component{
                 total})
         }
         
-         // 取出数据
-    //   const { total, list } = result.data
-    //   // 更新状态
-    //   this.setState({
-    //     products: list,
-    //     total
-    //   })
+    }
+    initColumns=()=>{
+      this.columns = [
+        {
+            title: '商品名称',
+            dataIndex: 'name'
+          },
+          {
+            title: '商品描述',
+            dataIndex: 'desc'
+          },
+          {
+            title: '价格',
+            dataIndex: 'price',
+            // width:200,
+            render: (price) => '¥' + price
+          },
+          {
+              title:'状态',
+              dataIndex:'status',
+              width:100,
+              render:(status)=>{
+                let btnText='下架'
+                let text='在售'
+                if(status===2){
+                  btnText='上架'
+                  text='已售罄'
+                }
+                return(
+                  <span>
+                    <Button type='primary'>{btnText}</Button><br/>
+                    <span>{text}</span>
+                  </span>
+
+                )
+
+                
+                }
+          },
+          {
+              title:'操作',
+              width:100,
+              render:()=>(
+                  <span>
+                      <LinkButton>详情</LinkButton><br/>
+                      <LinkButton>修改</LinkButton>
+                  </span>
+              )
+
+          }
+      ];
+      
+    }
+
+    componentWillMount(){
+      this.initColumns()
     }
 
     componentDidMount(){
@@ -43,11 +92,11 @@ export default class ProductHome extends React.Component{
         const {products,total}=this.state
         const title=(
             <div>
-               <Select style={{ width: 200 }}  value='1'>
+               <Select style={{ width: 150 }}  value='1'>
                   <Option value="1">按名称搜索</Option>
                   <Option value="2">按描述搜索</Option>
                </Select>
-               <Input placeholder='关键字' style={{width:200,margin:10}}/>
+               <Input placeholder='关键字' style={{width:150,margin:'0 10px'}}/>
                <Button type='primary'>搜索</Button>
             </div>
            )
@@ -60,42 +109,13 @@ export default class ProductHome extends React.Component{
            )
 
 
-           const columns = [
-            {
-                title: '商品名称',
-                dataIndex: 'name'
-              },
-              {
-                title: '商品描述',
-                dataIndex: 'desc'
-              },
-              {
-                title: '价格',
-                dataIndex: 'price',
-                render: (price) => '¥' + price
-              },
-              {
-                  title:'状态',
-                  dataIndex:'status'
-              },
-              {
-                  title:'操作',
-                  render:()=>(
-                      <span>
-                          <LinkButton>详情</LinkButton>
-                          <LinkButton>修改</LinkButton>
-                      </span>
-                  )
-
-              }
-          ];
-          
+           
           
           
           return (
             <Card title={title} extra={extra} >
             <Table
-                columns={columns}
+                columns={this.columns}
                 rowKey="_id"
                 dataSource={products}
                 bordered

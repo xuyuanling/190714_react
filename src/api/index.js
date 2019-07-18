@@ -31,5 +31,5 @@ export const reqAddCategory=(categoryName)=>ajax.post(BASE+'/manage/category/add
 export const reqUpdataCategory=(categoryId,categoryName)=>ajax.post(BASE+'/manage/category/update',{categoryId,categoryName})
 
 //获取商品列表请求
-export const reqProducts=(pageNum,pageSize)=>ajax(BASE+'/manage/product/list',{pageNum,pageSize})
+export const reqProducts=(pageNum,pageSize)=>ajax(BASE+'/manage/product/list',{params:{pageNum,pageSize}})
 

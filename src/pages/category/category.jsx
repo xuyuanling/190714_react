@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {Card,Button,Icon,Table,Modal,Input, message} from 'antd'
+import {Card,Button,Icon,Table,Modal, message} from 'antd'
 import {reqCategorys,reqAddCategory,reqUpdataCategory} from '../../api'
 import LinkButton from '../../component/link-botton'
 import AddUpdataForm from './add-updata-form'
@@ -118,7 +118,7 @@ export default class Category extends Component {
         bordered
        />
        <Modal
-          title={showStatus==1?'添加分类':'修改分类'}
+          title={showStatus===1?'添加分类':'修改分类'}
           visible={showStatus!==0}
           onOk={this.handleOk}
           onCancel={this.handleCancel}

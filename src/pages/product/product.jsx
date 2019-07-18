@@ -7,7 +7,7 @@ import ProductDetail from './add-updata'
 /**
  * 商品管理
  */
-export default class Product extends React.Component {
+export default class Product extends Component {
   render() {
     return(
       <Switch >

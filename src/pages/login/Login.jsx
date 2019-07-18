@@ -1,18 +1,32 @@
 import React from 'react'
-import { Form, Icon, Input, Button, Checkbox } from 'antd'
+import {Redirect} from 'react-router-dom'
+import { Form, Icon, Input, Button,message } from 'antd'
 import {reqLogin} from '../../api/index'
 import logo from '../../assets/images/logo.png'
+import storageUtils from '../../utils/storageUtils'
+import memoryUtils from '../../utils/memoryUtils'
 import './login.less'
 
 class Login extends React.Component{
     handleSubmit = e => {
         e.preventDefault();
-        this.props.form.validateFields((err, {username,password}) => {
+        this.props.form.validateFields(async (err, {username,password}) => {
             if (!err) {
               //alert(`发生ajax请求，username=${username}&password=${password}`)
-              reqLogin(username,password)
-            }else{
+              const result= await reqLogin(username,password)
+              if(result.status===0){
+                  this.props.history.replace('/')
+                  message.success('登录成功')
+                  //保存到local中
+                  const user=result.data
+                 storageUtils.saveUser(user)
+                 //保存到内存中
+                 memoryUtils.user=user
+
+              }else{
                 //alert('登录失败')
+                 message.error(result.msg)
+            }
             }
           });
     }
@@ -32,6 +46,10 @@ class Login extends React.Component{
         }
     }
         render(){
+            const user=memoryUtils.user
+            // if(user._id){
+            //     return <Redirect to='/'/>
+            // }
             const { getFieldDecorator }=this.props.form
             return (
                 <div className='login'>
