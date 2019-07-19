@@ -113,6 +113,7 @@ export default class Category extends Component {
     return (
       <Card  extra={extra}>
       <Table
+        rowKey="_id"
         columns={this.columns}
         dataSource={categorys}
         bordered

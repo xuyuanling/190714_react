@@ -15,13 +15,15 @@ class Login extends React.Component{
               //alert(`发生ajax请求，username=${username}&password=${password}`)
               const result= await reqLogin(username,password)
               if(result.status===0){
-                  this.props.history.replace('/')
+                  
                   message.success('登录成功')
                   //保存到local中
                   const user=result.data
                  storageUtils.saveUser(user)
                  //保存到内存中
                  memoryUtils.user=user
+
+                 this.props.history.replace('/')
 
               }else{
                 //alert('登录失败')
@@ -47,9 +49,9 @@ class Login extends React.Component{
     }
         render(){
             const user=memoryUtils.user
-            // if(user._id){
-            //     return <Redirect to='/'/>
-            // }
+            if(user._id){
+                return <Redirect to='/'/>
+            }
             const { getFieldDecorator }=this.props.form
             return (
                 <div className='login'>

@@ -33,3 +33,17 @@ export const reqUpdataCategory=(categoryId,categoryName)=>ajax.post(BASE+'/manag
 //获取商品列表请求
 export const reqProducts=(pageNum,pageSize)=>ajax(BASE+'/manage/product/list',{params:{pageNum,pageSize}})
 
+//发送商品搜索请求
+export const reqSearchProduct=(pageNum,pageSize,searchtName,searchType)=>ajax(BASE+'/manage/product/search',
+{params:{
+    pageNum,
+    pageSize,
+    [searchType]:searchtName
+}})
+
+//更新商品上架 下架请求
+export const reqUpdataStatus=(productId,status)=>ajax.post(BASE+'/manage/product/updateStatus',{productId,status})
+
+//根据分类ID获取分类
+export const reqCategory=(categoryId)=>ajax(BASE+'/manage/category/info',{params:{categoryId}})
+
